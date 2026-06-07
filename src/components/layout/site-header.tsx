@@ -39,6 +39,7 @@ export function SiteHeader() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
+    <>
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
@@ -143,8 +144,13 @@ export function SiteHeader() {
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
+    </header>
 
-      {/* mobile menu */}
+      {/* mobile menu — rendered OUTSIDE <header> on purpose: the header uses
+          backdrop-blur when scrolled, and backdrop-filter makes its element a
+          containing block for fixed descendants. Nesting the menu inside would
+          trap this fixed overlay in the 64px header box, so it failed to open
+          after scrolling. */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -201,6 +207,6 @@ export function SiteHeader() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
