@@ -2,69 +2,72 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
-import { Inbox } from "lucide-react";
+import {
+  Globe,
+  Share2,
+  Zap,
+  Users,
+  Inbox,
+  Sparkles,
+  Database,
+  CalendarCheck,
+  Gauge,
+  TrendingUp,
+  type LucideIcon,
+} from "lucide-react";
 import { StarDoodle } from "@/components/notebook/doodles";
 import { cn } from "@/lib/utils";
 
-type Lead = { name: string; company: string; initials: string };
+/* ── view config: one focused screen per service ─────────────────────────── */
+const VIEWS = [
+  { id: "web", icon: Globe, title: "Websites" },
+  { id: "social", icon: Share2, title: "Social Growth" },
+  { id: "ai", icon: Zap, title: "AI Automation" },
+  { id: "crm", icon: Users, title: "Leads · CRM" },
+] as const;
 
-const LEADS: Lead[] = [
-  { name: "Rahul Sharma", company: "Sharma Traders", initials: "RS" },
-  { name: "Priya Menon", company: "Bloom Studio", initials: "PM" },
-  { name: "Aman Khanna", company: "FitClub Gym", initials: "AK" },
+const SIDEBAR: LucideIcon[] = [Globe, Share2, Zap, Users];
+
+const VIEW_MS = 3000; // time each screen stays before switching
+
+// AI automation pipeline shown as a mini flowchart
+const FLOW: { icon: LucideIcon; label: string }[] = [
+  { icon: Inbox, label: "Lead" },
+  { icon: Sparkles, label: "AI reply" },
+  { icon: Database, label: "CRM" },
+  { icon: CalendarCheck, label: "Booked" },
 ];
 
-// relative bar heights (0–1) for the mini "Leads this week" chart
-const BARS = [0.45, 0.62, 0.5, 0.78, 0.66, 0.88, 1];
-
+const BARS = [0.4, 0.55, 0.48, 0.7, 0.62, 0.84, 1]; // follower-growth chart
+const LEADS = [
+  { initials: "RS", name: "Rahul Sharma", co: "Sharma Traders", status: 2 },
+  { initials: "PM", name: "Priya Menon", co: "Bloom Studio", status: 1 },
+  { initials: "AK", name: "Aman Khanna", co: "FitClub Gym", status: 0 },
+];
 const STATUS = [
   { label: "New", cls: "bg-black/[0.06] text-black/45" },
   { label: "Replied", cls: "bg-amber-100 text-amber-700" },
   { label: "Booked", cls: "bg-green-100 text-green-700" },
 ];
 
-const STEP_MS = 900; // time on each step
-const HOLD_MS = 1600; // pause once all booked, before looping
-const TOTAL = LEADS.length + 1; // step at which every lead is booked
-
-const clamp = (n: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, n));
-
 /**
- * A MacBook mock-up with a self-contained, looping "CRM" dashboard inside.
- * Leads arrive and progress New → Replied → Booked while the KPI tiles tick up.
- * Layout inside the screen is fixed-height, so nothing reflows as it animates.
+ * A MacBook mock-up whose screen auto-cycles through a focused dashboard view
+ * for each KVAI service — Websites, Social Growth, AI Automation and Leads/CRM —
+ * so the full offering reads at a glance without crowding one screen.
  */
 export function HeroMacbook({ className }: { className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { margin: "-60px" });
   const reduce = useReducedMotion();
-  const [step, setStep] = useState(0);
+  const [view, setView] = useState(0);
 
   useEffect(() => {
-    if (reduce) {
-      setStep(TOTAL);
-      return;
-    }
-    if (!inView) return;
-    let t: ReturnType<typeof setTimeout>;
-    const tick = (s: number) => {
-      const next = (s + 1) % (TOTAL + 1);
-      const delay = s === TOTAL ? HOLD_MS : STEP_MS;
-      t = setTimeout(() => {
-        setStep(next);
-        tick(next);
-      }, delay);
-    };
-    tick(step);
-    return () => clearTimeout(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (reduce || !inView) return;
+    const t = setInterval(() => setView((v) => (v + 1) % VIEWS.length), VIEW_MS);
+    return () => clearInterval(t);
   }, [inView, reduce]);
 
-  const p = step / TOTAL; // 0 → 1 progress across the loop
-  const leadsCount = Math.round(32 + p * 15);
-  const bookedCount = Math.round(6 + p * 8);
-  const repliedPct = Math.round(80 + p * 16);
-  const allBooked = step >= TOTAL;
+  const active = VIEWS[view];
 
   return (
     <div ref={ref} className={cn("relative", className)}>
@@ -93,7 +96,7 @@ export function HeroMacbook({ className }: { className?: string }) {
         {/* lid / screen */}
         <div className="rounded-t-2xl bg-[#1d1d1f] p-[2.4%] shadow-paper-lift">
           <div
-            className="relative overflow-hidden rounded-lg bg-[#fbfbfa] ring-1 ring-white/5"
+            className="relative overflow-hidden rounded-lg bg-[#f3f4f6] ring-1 ring-white/5"
             style={{ aspectRatio: "16 / 10" }}
           >
             {/* camera dot */}
@@ -106,7 +109,7 @@ export function HeroMacbook({ className }: { className?: string }) {
                 <span className="h-2 w-2 rounded-full bg-[#febc2e]" />
                 <span className="h-2 w-2 rounded-full bg-[#28c840]" />
                 <span className="ml-1.5 text-[10px] font-bold tracking-tight">
-                  KVAI <span className="text-marker">CRM</span>
+                  KVAI <span className="text-marker">Studio</span>
                 </span>
                 <span className="ml-auto inline-flex items-center gap-1 rounded-full bg-ink/90 px-1.5 py-0.5 text-[8px] font-bold text-paper">
                   <span className="relative flex h-1 w-1">
@@ -117,153 +120,80 @@ export function HeroMacbook({ className }: { className?: string }) {
                 </span>
               </div>
 
-              {/* body: mini sidebar + main */}
+              {/* body: sidebar + main */}
               <div className="flex min-h-0 flex-1">
-                {/* sidebar */}
-                <div className="hidden w-9 flex-col items-center gap-2 border-r border-black/5 bg-white py-3 sm:flex">
-                  <span className="h-4 w-4 rounded-md bg-marker/90" />
-                  <span className="h-1.5 w-5 rounded-full bg-black/10" />
-                  <span className="h-1.5 w-5 rounded-full bg-black/10" />
-                  <span className="h-1.5 w-5 rounded-full bg-black/10" />
-                  <span className="mt-auto h-1.5 w-5 rounded-full bg-black/10" />
+                {/* sidebar — active service highlighted */}
+                <div className="hidden w-9 flex-col items-center gap-2.5 border-r border-black/5 bg-white py-3 sm:flex">
+                  <span className="flex h-5 w-5 items-center justify-center rounded-md bg-marker text-paper">
+                    <Sparkles className="h-3 w-3" />
+                  </span>
+                  {SIDEBAR.map((Icon, i) => (
+                    <span
+                      key={i}
+                      className={cn(
+                        "flex h-5 w-5 items-center justify-center rounded-md transition-colors duration-300",
+                        i === view
+                          ? "bg-marker/10 text-marker"
+                          : "text-black/30"
+                      )}
+                    >
+                      <Icon className="h-3 w-3" />
+                    </span>
+                  ))}
                 </div>
 
-                {/* main panel */}
-                <div className="relative flex-1 space-y-2 overflow-hidden p-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-bold">Leads Pipeline</span>
-                    <span className="text-[8px] font-semibold text-black/35">
-                      Today
-                    </span>
-                  </div>
-
-                  {/* KPI tiles */}
-                  <div className="grid grid-cols-3 gap-1.5">
-                    <Kpi label="New leads" value={leadsCount} />
-                    <Kpi label="Replied" value={`${repliedPct}%`} />
-                    <Kpi label="Booked" value={bookedCount} accent />
-                  </div>
-
-                  {/* bar chart card */}
-                  <div className="rounded-md border border-black/5 bg-white px-2.5 py-2">
-                    <div className="mb-1.5 flex items-center justify-between">
-                      <span className="text-[8px] font-bold text-black/55">
-                        Leads this week
-                      </span>
-                      <span className="inline-flex items-center gap-0.5 rounded-full bg-green-100 px-1 py-px text-[7px] font-bold text-green-700">
-                        ↑ {Math.round(12 + p * 30)}%
-                      </span>
-                    </div>
-                    <div className="flex h-10 items-end gap-1">
-                      {BARS.map((h, i) => {
-                        const last = i === BARS.length - 1;
-                        return (
-                          <motion.div
-                            key={i}
-                            className={cn(
-                              "flex-1 rounded-sm",
-                              last ? "bg-marker" : "bg-marker/25"
-                            )}
-                            initial={false}
-                            animate={{
-                              height: `${(0.35 + p * 0.65) * h * 100}%`,
-                            }}
-                            transition={{
-                              duration: 0.6,
-                              ease: "easeInOut",
-                              delay: i * 0.03,
-                            }}
-                          />
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* lead rows */}
-                  <div className="space-y-1.5 pt-0.5">
-                    {LEADS.map((lead, i) => {
-                      const si = clamp(step - i, 0, 2);
-                      const s = STATUS[si];
-                      const booked = si === 2;
-                      return (
-                        <div
-                          key={lead.name}
+                {/* main panel — one focused view at a time */}
+                <div className="relative flex-1 overflow-hidden">
+                  {/* view header (crossfades with the screen) */}
+                  <div className="flex items-center justify-between px-3 pt-2.5">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={active.id}
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -4 }}
+                        transition={{ duration: 0.25 }}
+                        className="flex items-center gap-1.5 text-[11px] font-bold"
+                      >
+                        <active.icon className="h-3 w-3 text-marker" />
+                        {active.title}
+                      </motion.div>
+                    </AnimatePresence>
+                    {/* view dots */}
+                    <div className="flex gap-1">
+                      {VIEWS.map((_, i) => (
+                        <span
+                          key={i}
                           className={cn(
-                            "flex items-center gap-2 rounded-md border bg-white px-2 py-1.5 transition-colors duration-300",
-                            booked ? "border-green-200" : "border-black/5"
+                            "h-1 w-1 rounded-full transition-colors duration-300",
+                            i === view ? "bg-marker" : "bg-black/15"
                           )}
-                        >
-                          <span
-                            className={cn(
-                              "flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[8px] font-bold transition-colors duration-300",
-                              booked
-                                ? "bg-green-100 text-green-700"
-                                : "bg-marker/10 text-marker"
-                            )}
-                          >
-                            {lead.initials}
-                          </span>
-                          <div className="min-w-0 flex-1 leading-tight">
-                            <div className="truncate text-[9px] font-bold">
-                              {lead.name}
-                            </div>
-                            <div className="truncate text-[8px] text-black/40">
-                              {lead.company}
-                            </div>
-                          </div>
-                          <AnimatePresence mode="wait" initial={false}>
-                            <motion.span
-                              key={s.label}
-                              initial={reduce ? false : { scale: 0.6, opacity: 0 }}
-                              animate={{ scale: 1, opacity: 1 }}
-                              exit={{ scale: 0.6, opacity: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className={cn(
-                                "shrink-0 rounded-full px-1.5 py-0.5 text-[8px] font-bold",
-                                s.cls
-                              )}
-                            >
-                              {s.label}
-                            </motion.span>
-                          </AnimatePresence>
-                        </div>
-                      );
-                    })}
+                        />
+                      ))}
+                    </div>
                   </div>
 
-                  {/* new-lead toast at the start of each loop */}
-                  <AnimatePresence>
-                    {step === 0 && !reduce && (
+                  {/* swapping body */}
+                  <div className="relative h-[calc(100%-26px)] px-3 pb-3 pt-2">
+                    <AnimatePresence mode="wait">
                       <motion.div
-                        initial={{ opacity: 0, y: -8, scale: 0.9 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: -8, scale: 0.9 }}
-                        transition={{ duration: 0.3 }}
-                        className="pointer-events-none absolute right-3 top-[34px] z-10 inline-flex items-center gap-1 rounded-md bg-ink px-2 py-1 text-[8px] font-bold text-paper shadow"
+                        key={active.id}
+                        initial={reduce ? false : { opacity: 0, x: 16 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -16 }}
+                        transition={{ duration: 0.35, ease: "easeOut" }}
+                        className="absolute inset-x-3 bottom-3 top-2"
                       >
-                        <Inbox className="h-2.5 w-2.5" />
-                        New lead captured
+                        {active.id === "web" && <WebView reduce={!!reduce} />}
+                        {active.id === "social" && <SocialView reduce={!!reduce} />}
+                        {active.id === "ai" && <AiView reduce={!!reduce} />}
+                        {active.id === "crm" && <CrmView reduce={!!reduce} />}
                       </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* booked stamp when everything is done */}
-                  <AnimatePresence>
-                    {allBooked && (
-                      <motion.div
-                        initial={reduce ? false : { scale: 0.8, rotate: -6, opacity: 0 }}
-                        animate={{ scale: 1, rotate: -4, opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ type: "spring", stiffness: 260, damping: 16 }}
-                        className="pointer-events-none absolute bottom-3 right-3 z-10 rounded-md border-2 border-green-600/70 bg-white/80 px-2 py-0.5 font-marker text-xs text-green-700 backdrop-blur-sm"
-                      >
-                        All booked ✓
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                    </AnimatePresence>
+                  </div>
 
                   {/* soft screen glare */}
-                  <span className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/20" />
+                  <span className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-white/15" />
                 </div>
               </div>
             </div>
@@ -280,32 +210,235 @@ export function HeroMacbook({ className }: { className?: string }) {
   );
 }
 
-function Kpi({
-  label,
+/* ── shared bits ─────────────────────────────────────────────────────────── */
+
+function Stat({
+  icon: Icon,
   value,
+  label,
   accent,
 }: {
+  icon: LucideIcon;
+  value: string;
   label: string;
-  value: number | string;
   accent?: boolean;
 }) {
   return (
     <div
       className={cn(
-        "rounded-md border px-2 py-1.5",
+        "flex-1 rounded-md border px-2 py-1.5",
         accent ? "border-green-200 bg-green-50/60" : "border-black/5 bg-white"
       )}
     >
-      <div className="text-[7px] font-semibold uppercase tracking-wide text-black/40">
-        {label}
-      </div>
+      <Icon className={cn("h-3 w-3", accent ? "text-green-600" : "text-marker")} />
       <div
         className={cn(
-          "text-sm font-bold tabular-nums leading-tight",
+          "mt-1 text-base font-bold tabular-nums leading-none",
           accent ? "text-green-700" : "text-ink"
         )}
       >
         {value}
+      </div>
+      <div className="mt-0.5 text-[7px] font-semibold uppercase tracking-wide text-black/40">
+        {label}
+      </div>
+    </div>
+  );
+}
+
+/* ── Websites view ───────────────────────────────────────────────────────── */
+function WebView({ reduce }: { reduce: boolean }) {
+  return (
+    <div className="flex h-full flex-col gap-2">
+      <div className="flex gap-1.5">
+        <Stat icon={Globe} value="18" label="Sites live" />
+        <Stat icon={Gauge} value="98" label="PageSpeed" />
+        <Stat icon={TrendingUp} value="+212%" label="Conversions" accent />
+      </div>
+      <div className="flex flex-1 flex-col rounded-md border border-black/5 bg-white px-2.5 py-2">
+        <div className="mb-1 flex items-center justify-between">
+          <span className="text-[8px] font-bold text-black/55">
+            Monthly visitors
+          </span>
+          <span className="text-[7px] font-bold text-green-600">↑ live</span>
+        </div>
+        <svg
+          viewBox="0 0 100 40"
+          preserveAspectRatio="none"
+          className="h-full w-full"
+        >
+          <defs>
+            <linearGradient id="kv-web" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#1E88E5" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#1E88E5" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M0,33 L16,26 L32,29 L48,16 L64,20 L80,9 L100,5 L100,40 L0,40 Z"
+            fill="url(#kv-web)"
+          />
+          <motion.path
+            d="M0,33 L16,26 L32,29 L48,16 L64,20 L80,9 L100,5"
+            fill="none"
+            stroke="#1E88E5"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            initial={reduce ? false : { pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={reduce ? undefined : { duration: 1.4, ease: "easeInOut" }}
+          />
+          <circle cx="100" cy="5" r="2.6" fill="#1E88E5" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+/* ── Social Growth view ──────────────────────────────────────────────────── */
+function SocialView({ reduce }: { reduce: boolean }) {
+  return (
+    <div className="flex h-full flex-col gap-2">
+      <div className="flex gap-1.5">
+        <Stat icon={Share2} value="94k" label="Reach" />
+        <Stat icon={Users} value="+5.2k" label="Followers" />
+        <Stat icon={TrendingUp} value="+186%" label="Engagement" accent />
+      </div>
+      <div className="flex flex-1 flex-col rounded-md border border-black/5 bg-white px-2.5 py-2">
+        <span className="mb-1 text-[8px] font-bold text-black/55">
+          Follower growth
+        </span>
+        <div className="flex flex-1 items-end gap-1">
+          {BARS.map((h, i) => {
+            const last = i === BARS.length - 1;
+            return (
+              <motion.div
+                key={i}
+                className={cn(
+                  "flex-1 rounded-sm",
+                  last ? "bg-marker" : "bg-marker/25"
+                )}
+                initial={reduce ? false : { height: 0 }}
+                animate={{ height: `${h * 100}%` }}
+                transition={
+                  reduce ? undefined : { duration: 0.5, delay: i * 0.05 }
+                }
+              />
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── AI Automation view ──────────────────────────────────────────────────── */
+function AiView({ reduce }: { reduce: boolean }) {
+  return (
+    <div className="flex h-full flex-col gap-2">
+      <div className="flex gap-1.5">
+        <Stat icon={Zap} value="7" label="Workflows" />
+        <Stat icon={CalendarCheck} value="15 hrs" label="Saved / wk" accent />
+      </div>
+      <div className="flex flex-1 flex-col justify-center rounded-md border border-black/5 bg-white px-2.5 py-2">
+        <span className="mb-3 text-[8px] font-bold text-black/55">
+          Lead → booked, on autopilot
+        </span>
+        <div className="relative">
+          {/* connector track + travelling pulse */}
+          <div className="pointer-events-none absolute inset-x-[12%] top-[11px]">
+            <div className="h-[2px] w-full rounded-full bg-marker/30" />
+            {!reduce && (
+              <motion.span
+                className="absolute top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-marker shadow-[0_0_0_3px_rgba(229,57,53,0.2)]"
+                initial={{ left: "0%" }}
+                animate={{ left: "100%" }}
+                transition={{
+                  duration: 2,
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                  repeatType: "loop",
+                }}
+              />
+            )}
+          </div>
+          {/* nodes pop in one by one */}
+          <div className="relative z-10 grid grid-cols-4">
+            {FLOW.map((node, i) => {
+              const Icon = node.icon;
+              return (
+                <motion.div
+                  key={node.label}
+                  initial={reduce ? false : { scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={
+                    reduce
+                      ? undefined
+                      : { delay: 0.2 + i * 0.45, type: "spring", stiffness: 320, damping: 18 }
+                  }
+                  className="flex flex-col items-center gap-1"
+                >
+                  <span className="flex h-[22px] w-[22px] items-center justify-center rounded-md border border-marker bg-marker text-paper">
+                    <Icon className="h-3 w-3" />
+                  </span>
+                  <span className="text-[7px] font-bold text-ink">{node.label}</span>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Leads / CRM view ────────────────────────────────────────────────────── */
+function CrmView({ reduce }: { reduce: boolean }) {
+  return (
+    <div className="flex h-full flex-col gap-2">
+      <div className="flex gap-1.5">
+        <Stat icon={Inbox} value="47" label="New leads" />
+        <Stat icon={Sparkles} value="96%" label="Replied" />
+        <Stat icon={CalendarCheck} value="31" label="Booked" accent />
+      </div>
+      <div className="flex flex-1 flex-col gap-1.5">
+        {LEADS.map((lead, i) => {
+          const s = STATUS[lead.status];
+          const booked = lead.status === 2;
+          return (
+            <motion.div
+              key={lead.name}
+              initial={reduce ? false : { opacity: 0, x: 12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={reduce ? undefined : { delay: 0.1 + i * 0.12 }}
+              className={cn(
+                "flex flex-1 items-center gap-2 rounded-md border bg-white px-2",
+                booked ? "border-green-200" : "border-black/5"
+              )}
+            >
+              <span
+                className={cn(
+                  "flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[8px] font-bold",
+                  booked ? "bg-green-100 text-green-700" : "bg-marker/10 text-marker"
+                )}
+              >
+                {lead.initials}
+              </span>
+              <div className="min-w-0 flex-1 leading-tight">
+                <div className="truncate text-[9px] font-bold">{lead.name}</div>
+                <div className="truncate text-[8px] text-black/40">{lead.co}</div>
+              </div>
+              <span
+                className={cn(
+                  "shrink-0 rounded-full px-1.5 py-0.5 text-[8px] font-bold",
+                  s.cls
+                )}
+              >
+                {s.label}
+              </span>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
