@@ -83,9 +83,6 @@ export function HeroMacbook({ className }: { className?: string }) {
         className="absolute -left-4 -top-5 hidden h-8 w-8 animate-float lg:block"
         draw={false}
       />
-      <span className="absolute -right-3 -top-4 hidden rotate-6 rounded-md bg-sticky px-2 py-1 font-marker text-xs text-ink shadow-sticky lg:block">
-        runs 24/7
-      </span>
 
       <motion.div
         initial={reduce ? false : { opacity: 0, y: 20 }}

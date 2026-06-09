@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Phone, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Underlined } from "@/components/notebook/highlight";
-import { LoopArrow, StarDoodle, ScribbleDot } from "@/components/notebook/doodles";
+import { StarDoodle, ScribbleDot } from "@/components/notebook/doodles";
 import { HeroMacbook } from "@/components/sections/hero-macbook";
 import { siteConfig } from "@/lib/site";
 
@@ -23,11 +23,6 @@ export function Hero() {
       <StarDoodle
         color="#E53935"
         className="absolute left-[6%] top-32 hidden h-9 w-9 animate-float sm:block"
-        draw={false}
-      />
-      <LoopArrow
-        color="#111111"
-        className="animate-sway absolute right-[4%] top-28 hidden h-24 w-24 opacity-80 lg:block"
         draw={false}
       />
       <ScribbleDot
