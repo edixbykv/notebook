@@ -271,96 +271,39 @@ export const testimonials = [
   },
 ];
 
+// Live client projects. Each renders inside the notebook tablet mock-up with a
+// full-page screenshot that scrolls on hover/in-view. Screenshots live in
+// /public/projects/<slug>.webp (regenerate with scripts/_shots.mjs if a site
+// changes). imgW/imgH are the screenshot's natural pixels — used to compute the
+// hover-scroll distance, so keep them accurate.
 export const portfolio = [
   {
-    slug: "mehta-interiors",
-    client: "Mehta Interiors",
+    slug: "atelier",
+    client: "Atelier",
+    tagline: "Crafting spaces, inspiring lifestyles",
     category: "Website Development",
-    color: "sticky" as const,
-    rotate: "-2deg",
-    summary: "A premium portfolio site that turned browsers into booked consultations.",
-    before: "Outdated site, no leads, invisible on Google.",
-    after: "2× monthly leads, page-1 ranking for local keywords.",
-    metrics: [
-      { label: "Leads", value: "+112%" },
-      { label: "Load time", value: "1.4s" },
-      { label: "SEO score", value: "98" },
-    ],
+    summary:
+      "A cinematic, dark-luxe website for a premium interiors & modular-kitchen studio — full-screen storytelling, buttery scroll animation, and a build engineered to make craftsmanship feel collectible.",
+    url: "https://atelier.kvai.in/",
+    image: "/projects/atelier.webp",
+    imgW: 1440,
+    imgH: 11967,
+    frame: "graphite" as const,
+    tags: ["Web Design", "Motion", "Branding"],
   },
   {
-    slug: "bloom-wellness",
-    client: "Bloom Wellness",
-    category: "AI Automation",
-    color: "marker" as const,
-    rotate: "1.5deg",
-    summary: "Automated booking, reminders, and follow-ups for a busy wellness studio.",
-    before: "Manual bookings, missed follow-ups, no-shows.",
-    after: "15 hrs/week saved, 40% fewer no-shows.",
-    metrics: [
-      { label: "Hours saved", value: "15/wk" },
-      { label: "No-shows", value: "-40%" },
-      { label: "Rebookings", value: "+58%" },
-    ],
-  },
-  {
-    slug: "verma-fitness",
-    client: "Verma Fitness Studio",
-    category: "Social Media Growth",
-    color: "ink" as const,
-    rotate: "-1deg",
-    summary: "A content engine that turned a quiet Instagram into a lead machine.",
-    before: "300 followers, zero leads from social.",
-    after: "11k followers, 30+ leads a month from reels.",
-    metrics: [
-      { label: "Followers", value: "11k+" },
-      { label: "Leads/mo", value: "30+" },
-      { label: "Reach", value: "+900%" },
-    ],
-  },
-  {
-    slug: "spice-route",
-    client: "Spice Route Bistro",
+    slug: "zanishaa",
+    client: "Zanishaa",
+    tagline: "Where science meets timeless beauty",
     category: "Website Development",
-    color: "sticky" as const,
-    rotate: "2deg",
-    summary: "A mouth-watering restaurant site with online table reservations.",
-    before: "Phone-only bookings, no online menu.",
-    after: "Online reservations live, +35% weekend covers.",
-    metrics: [
-      { label: "Reservations", value: "+35%" },
-      { label: "Mobile speed", value: "97" },
-      { label: "Bounce", value: "-22%" },
-    ],
-  },
-  {
-    slug: "nova-consulting",
-    client: "Nova Consulting",
-    category: "AI Automation",
-    color: "marker" as const,
-    rotate: "-1.5deg",
-    summary: "An AI lead-qualifier that books meetings while the team sleeps.",
-    before: "Slow lead response, leads going cold.",
-    after: "Instant replies, 3× more qualified meetings.",
-    metrics: [
-      { label: "Response", value: "<1 min" },
-      { label: "Meetings", value: "3×" },
-      { label: "Cost/lead", value: "-46%" },
-    ],
-  },
-  {
-    slug: "urban-threads",
-    client: "Urban Threads",
-    category: "Social Media Growth",
-    color: "ink" as const,
-    rotate: "1deg",
-    summary: "A viral-leaning content system for a homegrown fashion label.",
-    before: "Inconsistent posting, flat sales.",
-    after: "2 viral reels, +180% store visits.",
-    metrics: [
-      { label: "Store visits", value: "+180%" },
-      { label: "Engagement", value: "+260%" },
-      { label: "Sales", value: "+74%" },
-    ],
+    summary:
+      "A premium experience for an aesthetics & skin clinic — treatment storytelling, trust-building proof, and a frictionless WhatsApp booking flow designed to turn visitors into booked consultations.",
+    url: "https://zanishaa.kvai.in/",
+    image: "/projects/zanishaa.webp",
+    imgW: 1440,
+    imgH: 8838,
+    frame: "gold" as const,
+    tags: ["Web Design", "Booking Flow", "SEO"],
   },
 ];
 
