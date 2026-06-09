@@ -104,7 +104,7 @@ export function Hero() {
           </div>
 
           {/* right: MacBook with a live CRM dashboard loop */}
-          <HeroMacbook className="mx-auto hidden w-full max-w-md lg:block" />
+          <HeroMacbook className="mx-auto hidden w-full max-w-md lg:block lg:self-start lg:mt-4" />
         </div>
 
         {/* mobile MacBook */}
