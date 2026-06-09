@@ -305,6 +305,20 @@ export const portfolio = [
     frame: "gold" as const,
     tags: ["Web Design", "Booking Flow", "SEO"],
   },
+  {
+    slug: "ecomm",
+    client: "KVAI Store",
+    tagline: "Luxury basics, made to last",
+    category: "Website Development",
+    summary:
+      "A refined, editorial e-commerce experience for a premium menswear label — quiet-luxury storytelling, a clean product grid, and a conversion-focused storefront engineered to make everyday essentials feel collectible.",
+    url: "https://ecomm.kvai.in/",
+    image: "/projects/ecomm.webp",
+    imgW: 1440,
+    imgH: 4037,
+    frame: "silver" as const,
+    tags: ["E-Commerce", "Web Design", "Branding"],
+  },
 ];
 
 export const blogPosts = [
