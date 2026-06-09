@@ -7,6 +7,7 @@ import { BrandStrip } from "@/components/sections/brand-strip";
 import { ProblemSection } from "@/components/sections/problem-section";
 import { ServicesSection } from "@/components/sections/services-section";
 import { WhyKvaiSection } from "@/components/sections/why-kvai-section";
+import { AutomationSection } from "@/components/sections/automation-section";
 import { PortfolioSection } from "@/components/sections/portfolio-section";
 import { ProcessSection } from "@/components/sections/process-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
@@ -33,6 +34,7 @@ export default function HomePage() {
       <ProblemSection />
       <ServicesSection />
       <WhyKvaiSection />
+      <AutomationSection />
       <PortfolioSection />
       <ProcessSection />
       <TestimonialsSection />
