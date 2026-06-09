@@ -4,14 +4,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Phone, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Underlined } from "@/components/notebook/highlight";
-import { StickyNote } from "@/components/notebook/sticky-note";
-import {
-  HandArrow,
-  LoopArrow,
-  StarDoodle,
-  GrowthChart,
-  ScribbleDot,
-} from "@/components/notebook/doodles";
+import { LoopArrow, StarDoodle, ScribbleDot } from "@/components/notebook/doodles";
+import { HeroMacbook } from "@/components/sections/hero-macbook";
 import { siteConfig } from "@/lib/site";
 
 /** stagger delay for the CSS `.reveal-load` entrance */
@@ -114,86 +108,12 @@ export function Hero() {
             </div>
           </div>
 
-          {/* right: notebook collage */}
-          <motion.div
-            initial={reduce ? false : { opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="relative mx-auto hidden h-full w-full max-w-md lg:block"
-          >
-            <div className="relative">
-              <StickyNote
-                color="yellow"
-                rotate="-4deg"
-                float
-                className="absolute left-0 top-0 w-56"
-                pin="pin"
-              >
-                <p className="font-hand text-2xl font-bold leading-tight text-ink">
-                  Idea → Website
-                </p>
-                <p className="mt-1 text-sm text-ink/70">
-                  Launch in 2–4 weeks
-                </p>
-              </StickyNote>
-
-              <StickyNote
-                color="red"
-                rotate="5deg"
-                float
-                className="absolute right-0 top-16 w-52"
-                pin="tape"
-              >
-                <p className="font-hand text-2xl font-bold leading-tight text-ink">
-                  + AI Automation
-                </p>
-                <p className="mt-1 text-sm text-ink/80">
-                  Save 15 hrs / week
-                </p>
-              </StickyNote>
-
-              <div className="absolute left-6 top-52 w-64 rotate-[-2deg] rounded-lg bg-paper p-5 shadow-paper-lift">
-                <div className="mb-2 flex items-center justify-between">
-                  <span className="font-hand text-lg font-bold text-ink">
-                    Growth plan
-                  </span>
-                  <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-bold text-green-700">
-                    +112%
-                  </span>
-                </div>
-                <GrowthChart className="h-24 w-full" draw={false} />
-              </div>
-
-              <HandArrow
-                color="#E53935"
-                className="animate-bob absolute -right-2 top-44 h-16 w-16"
-                draw={false}
-              />
-            </div>
-          </motion.div>
+          {/* right: MacBook with a live CRM dashboard loop */}
+          <HeroMacbook className="mx-auto hidden w-full max-w-md lg:block" />
         </div>
-      </div>
 
-      {/* mobile collage */}
-      <div className="container mt-10 flex gap-3 overflow-x-auto pb-2 hide-scrollbar lg:hidden">
-        <StickyNote color="yellow" rotate="-2deg" className="w-44 shrink-0">
-          <p className="font-hand text-xl font-bold leading-tight">
-            Idea → Website
-          </p>
-          <p className="mt-1 text-xs text-ink/70">Launch in 2–4 weeks</p>
-        </StickyNote>
-        <StickyNote color="red" rotate="2deg" className="w-44 shrink-0">
-          <p className="font-hand text-xl font-bold leading-tight">
-            + AI Automation
-          </p>
-          <p className="mt-1 text-xs text-ink/80">Save 15 hrs / week</p>
-        </StickyNote>
-        <StickyNote color="ink" rotate="-1deg" className="w-44 shrink-0">
-          <p className="font-hand text-xl font-bold leading-tight">
-            + Social Growth
-          </p>
-          <p className="mt-1 text-xs text-paper/80">Real leads, monthly</p>
-        </StickyNote>
+        {/* mobile MacBook */}
+        <HeroMacbook className="mx-auto mt-10 w-full max-w-sm lg:hidden" />
       </div>
     </section>
   );
