@@ -290,6 +290,7 @@ export const portfolio = [
     imgH: 11967,
     frame: "graphite" as const,
     tags: ["Web Design", "Motion", "Branding"],
+    home: true,
   },
   {
     slug: "zanishaa",
@@ -304,6 +305,7 @@ export const portfolio = [
     imgH: 8838,
     frame: "gold" as const,
     tags: ["Web Design", "Booking Flow", "SEO"],
+    home: true,
   },
   {
     slug: "ecomm",
@@ -318,6 +320,22 @@ export const portfolio = [
     imgH: 4037,
     frame: "silver" as const,
     tags: ["E-Commerce", "Web Design", "Branding"],
+    home: true,
+  },
+  {
+    slug: "resume",
+    client: "Resume",
+    tagline: "Your career, beautifully presented",
+    category: "Website Development",
+    summary:
+      "A clean, modern online resume experience — fast, fully responsive, and recruiter-ready. Built to make a strong first impression and turn a profile into real opportunities.",
+    url: "https://resume.kvai.in/",
+    image: "/projects/resume.webp",
+    imgW: 1440,
+    imgH: 3781,
+    frame: "marker" as const,
+    tags: ["Web Design", "Personal Branding", "Responsive"],
+    home: false,
   },
 ];
 

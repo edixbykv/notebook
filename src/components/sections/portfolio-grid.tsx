@@ -5,7 +5,7 @@ export function PortfolioGrid() {
   return (
     <Section className="bg-paper">
       <Container>
-        <ProjectsShowcase />
+        <ProjectsShowcase all />
       </Container>
     </Section>
   );

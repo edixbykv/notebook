@@ -34,3 +34,7 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# large 3D source model (optimized copy lives in public/models/)
+/2004_ferrari_f2004.glb
+dev.log

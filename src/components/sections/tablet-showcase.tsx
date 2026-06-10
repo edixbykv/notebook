@@ -161,10 +161,18 @@ function ProjectRow({ project, reverse }: { project: Project; reverse: boolean }
   );
 }
 
-export function ProjectsShowcase({ className }: { className?: string }) {
+export function ProjectsShowcase({
+  className,
+  all = false,
+}: {
+  className?: string;
+  /** Show every project (portfolio page). Default shows only home-featured ones. */
+  all?: boolean;
+}) {
+  const projects = all ? portfolio : portfolio.filter((p) => p.home !== false);
   return (
     <div className={cn("space-y-20 md:space-y-28", className)}>
-      {portfolio.map((project, i) => (
+      {projects.map((project, i) => (
         <ProjectRow key={project.slug} project={project} reverse={i % 2 === 1} />
       ))}
     </div>
