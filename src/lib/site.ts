@@ -333,7 +333,7 @@ export const portfolio = [
     image: "/projects/resume.webp",
     imgW: 1440,
     imgH: 3781,
-    frame: "marker" as const,
+    frame: "silver" as const,
     tags: ["Web Design", "Personal Branding", "Responsive"],
     home: false,
   },
