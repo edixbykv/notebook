@@ -273,10 +273,105 @@ export const testimonials = [
 
 // Live client projects. Each renders inside the notebook tablet mock-up with a
 // full-page screenshot that scrolls on hover/in-view. Screenshots live in
-// /public/projects/<slug>.webp (regenerate with scripts/_shots.mjs if a site
-// changes). imgW/imgH are the screenshot's natural pixels — used to compute the
-// hover-scroll distance, so keep them accurate.
-export const portfolio = [
+// /public/projects/<slug>.webp (regenerate with scripts/_shot-resume.mjs or
+// scripts/_shots-apps.mjs if a site changes). imgW/imgH are the screenshot's
+// natural pixels — used to compute the hover-scroll distance, so keep accurate.
+// Projects with a companion app also get a phone overlay: mobile screenshot at
+// /public/projects/<slug>-phone.webp plus its natural mobileW/mobileH pixels.
+export type PortfolioItem = {
+  slug: string;
+  client: string;
+  tagline: string;
+  category: string;
+  summary: string;
+  url: string;
+  image: string;
+  imgW: number;
+  imgH: number;
+  frame: "silver" | "graphite" | "gold" | "marker";
+  tags: string[];
+  features?: string[];
+  /** Mobile screenshot for the phone overlay (web + app projects). */
+  mobile?: string;
+  mobileW?: number;
+  mobileH?: number;
+  /** Show on the homepage portfolio section (home shows the first 4). */
+  home?: boolean;
+};
+
+export const portfolio: PortfolioItem[] = [
+  {
+    slug: "ecomm",
+    client: "KVAI Wear",
+    tagline: "Luxury basics, made to last",
+    category: "E-Commerce + App",
+    summary:
+      "A refined, editorial storefront for a premium menswear label — quiet-luxury storytelling, an eleven-shade catalogue, and a full cart-to-checkout flow, paired with a companion mobile shopping app that makes everyday essentials feel collectible.",
+    url: "https://ecomm.kvai.in/",
+    image: "/projects/ecomm.webp",
+    imgW: 1440,
+    imgH: 4037,
+    mobile: "/projects/ecomm-phone.webp",
+    mobileW: 780,
+    mobileH: 11276,
+    frame: "silver",
+    tags: ["E-Commerce", "Web + App", "Branding"],
+    features: [
+      "Full storefront — cart, wishlist & checkout",
+      "Eleven-shade catalogue with live filtering",
+      "Matching mobile shopping app",
+      "Quiet-luxury brand design & motion",
+    ],
+    home: true,
+  },
+  {
+    slug: "wedding",
+    client: "Vishwakarma Matrimonial",
+    tagline: "Find your perfect life partner",
+    category: "Matrimony Platform + App",
+    summary:
+      "A warm, trust-first matrimony platform for the Vishwakarma community — rich verified profiles, smart matchmaking, and sub-community filtering — paired with a companion mobile app that puts your perfect match just a tap away.",
+    url: "https://wedding.kvai.in/",
+    image: "/projects/wedding.webp",
+    imgW: 1440,
+    imgH: 4433,
+    mobile: "/projects/wedding-phone.webp",
+    mobileW: 780,
+    mobileH: 14234,
+    frame: "gold",
+    tags: ["Matrimony", "Web + App", "Community"],
+    features: [
+      "Searchable verified member profiles",
+      "Smart matchmaking & sub-community filters",
+      "Companion mobile app for on-the-go matches",
+      "Success stories & trust-building proof",
+    ],
+    home: true,
+  },
+  {
+    slug: "learn",
+    client: "KVAI LMS",
+    tagline: "Learn. Grow. Get certified.",
+    category: "Learning Platform + App",
+    summary:
+      "A modern online learning platform — a searchable course catalogue, video lessons with progress tracking, and shareable certificates — paired with a learn-anywhere mobile app that turns spare minutes into new skills.",
+    url: "https://learn.kvai.in/",
+    image: "/projects/learn.webp",
+    imgW: 1440,
+    imgH: 3862,
+    mobile: "/projects/learn-phone.webp",
+    mobileW: 810,
+    mobileH: 15570,
+    frame: "graphite",
+    tags: ["E-Learning", "Web + App", "Certificates"],
+    features: [
+      "Course catalogue with categories & search",
+      "Video lessons, progress & certificates",
+      "Learn-anywhere mobile app",
+      "Instructor profiles & learner reviews",
+    ],
+    home: true,
+  },
   {
     slug: "atelier",
     client: "Atelier",
@@ -288,7 +383,7 @@ export const portfolio = [
     image: "/projects/atelier.webp",
     imgW: 1440,
     imgH: 11967,
-    frame: "graphite" as const,
+    frame: "graphite",
     tags: ["Web Design", "Motion", "Branding"],
     home: true,
   },
@@ -303,24 +398,9 @@ export const portfolio = [
     image: "/projects/zanishaa.webp",
     imgW: 1440,
     imgH: 8838,
-    frame: "gold" as const,
+    frame: "gold",
     tags: ["Web Design", "Booking Flow", "SEO"],
-    home: true,
-  },
-  {
-    slug: "ecomm",
-    client: "KVAI Store",
-    tagline: "Luxury basics, made to last",
-    category: "Website Development",
-    summary:
-      "A refined, editorial e-commerce experience for a premium menswear label — quiet-luxury storytelling, a clean product grid, and a conversion-focused storefront engineered to make everyday essentials feel collectible.",
-    url: "https://ecomm.kvai.in/",
-    image: "/projects/ecomm.webp",
-    imgW: 1440,
-    imgH: 4037,
-    frame: "silver" as const,
-    tags: ["E-Commerce", "Web Design", "Branding"],
-    home: true,
+    home: false,
   },
   {
     slug: "resume",
@@ -333,7 +413,7 @@ export const portfolio = [
     image: "/projects/resume.webp",
     imgW: 1440,
     imgH: 3781,
-    frame: "silver" as const,
+    frame: "silver",
     tags: ["Web Design", "Personal Branding", "Responsive"],
     home: false,
   },
