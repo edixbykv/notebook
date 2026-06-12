@@ -41,10 +41,14 @@ function Phone({
   project,
   active,
   reverse,
+  onEnter,
+  onLeave,
 }: {
   project: Project;
   active: boolean;
   reverse: boolean;
+  onEnter: () => void;
+  onLeave: () => void;
 }) {
   const imgW = project.mobileW ?? 780;
   const imgH = project.mobileH ?? 1688;
@@ -55,8 +59,10 @@ function Phone({
   return (
     <div
       aria-hidden="true"
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
       className={cn(
-        "pointer-events-none absolute bottom-[-6%] z-20 w-[30%] drop-shadow-2xl",
+        "absolute bottom-[-6%] z-20 w-[30%] drop-shadow-2xl",
         reverse ? "left-[-4%] -rotate-[5deg]" : "right-[-4%] rotate-[5deg]"
       )}
       style={{ aspectRatio: "1 / 2.03" }}
@@ -95,17 +101,23 @@ function DeviceStage({
   reverse: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(false);
+  // On touch / no-hover devices, both previews auto-scroll while in view.
+  const [inView, setInView] = useState(false);
+  // On hover devices, only the device the pointer is over scrolls.
+  const [hoverTablet, setHoverTablet] = useState(false);
+  const [hoverPhone, setHoverPhone] = useState(false);
   const { endPct, duration } = tabletScroll(project);
   const hasPhone = Boolean(project.mobile);
 
-  // On touch / no-hover devices, auto-scroll the preview while it's in view.
+  const tabletActive = inView || hoverTablet;
+  const phoneActive = inView || hoverPhone;
+
   useEffect(() => {
     if (window.matchMedia("(hover: hover)").matches) return;
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(
-      ([entry]) => setActive(entry.isIntersecting && entry.intersectionRatio > 0.5),
+      ([entry]) => setInView(entry.isIntersecting && entry.intersectionRatio > 0.5),
       { threshold: [0, 0.5, 1] }
     );
     io.observe(el);
@@ -115,8 +127,6 @@ function DeviceStage({
   return (
     <div
       ref={ref}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
       className={cn("relative", hasPhone && "pr-[6%]", hasPhone && reverse && "pl-[6%] pr-0")}
     >
       <a
@@ -124,6 +134,8 @@ function DeviceStage({
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Open the ${project.client} live website in a new tab`}
+        onMouseEnter={() => setHoverTablet(true)}
+        onMouseLeave={() => setHoverTablet(false)}
         className="group relative block w-full select-none outline-none focus-visible:ring-2 focus-visible:ring-marker focus-visible:ring-offset-4 focus-visible:ring-offset-paper"
         style={{ aspectRatio: "1544 / 1226" }}
       >
@@ -146,7 +158,7 @@ function DeviceStage({
             loading="lazy"
             className="block w-full will-change-transform"
             style={{
-              transform: active ? `translateY(${endPct}%)` : "translateY(0%)",
+              transform: tabletActive ? `translateY(${endPct}%)` : "translateY(0%)",
               transition: `transform ${duration}s cubic-bezier(0.4, 0, 0.4, 1)`,
             }}
           />
@@ -175,7 +187,15 @@ function DeviceStage({
         </span>
       </a>
 
-      {hasPhone && <Phone project={project} active={active} reverse={reverse} />}
+      {hasPhone && (
+        <Phone
+          project={project}
+          active={phoneActive}
+          reverse={reverse}
+          onEnter={() => setHoverPhone(true)}
+          onLeave={() => setHoverPhone(false)}
+        />
+      )}
     </div>
   );
 }
