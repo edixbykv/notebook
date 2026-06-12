@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight, Check, Cpu } from "lucide-react";
 import { portfolio } from "@/lib/site";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { TechStackModal } from "./tech-stack-modal";
 
 type Project = (typeof portfolio)[number];
 
@@ -201,6 +202,7 @@ function DeviceStage({
 }
 
 function ProjectRow({ project, reverse }: { project: Project; reverse: boolean }) {
+  const [showTech, setShowTech] = useState(false);
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -255,13 +257,31 @@ function ProjectRow({ project, reverse }: { project: Project; reverse: boolean }
           ))}
         </div>
 
-        <div className="mt-7">
+        <div className="mt-7 flex flex-wrap justify-center gap-3 lg:justify-start">
           <Button href={project.url} variant="ink" size="lg">
             Visit live site
             <ArrowUpRight className="h-4 w-4" />
           </Button>
+          {project.tech && (
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => setShowTech(true)}
+              aria-haspopup="dialog"
+            >
+              <Cpu className="h-4 w-4" />
+              Tech &amp; Architecture
+            </Button>
+          )}
         </div>
       </div>
+
+      {project.tech && (
+        <TechStackModal
+          project={showTech ? project : null}
+          onClose={() => setShowTech(false)}
+        />
+      )}
     </motion.div>
   );
 }

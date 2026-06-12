@@ -278,6 +278,40 @@ export const testimonials = [
 // natural pixels — used to compute the hover-scroll distance, so keep accurate.
 // Projects with a companion app also get a phone overlay: mobile screenshot at
 // /public/projects/<slug>-phone.webp plus its natural mobileW/mobileH pixels.
+/** One labelled cluster of technologies in the tech-stack popup. */
+export type TechGroup = {
+  /** Section label, e.g. "Frontend", "Backend & Data". */
+  title: string;
+  /** Icon key — mapped to a Lucide icon in the tech-stack modal. */
+  icon:
+    | "frontend"
+    | "motion"
+    | "backend"
+    | "database"
+    | "auth"
+    | "mobile"
+    | "commerce"
+    | "video"
+    | "search"
+    | "booking"
+    | "seo"
+    | "content"
+    | "infra"
+    | "tooling";
+  /** Individual technologies in this group. */
+  items: string[];
+};
+
+/** Full technical breakdown shown in the "Tech & Architecture" popup. */
+export type ProjectTech = {
+  /** Short paragraph describing how the project is built. */
+  architecture: string;
+  /** Left-to-right request/data flow rendered as a connected pipeline. */
+  flow: string[];
+  /** Grouped technology stack. */
+  stack: TechGroup[];
+};
+
 export type PortfolioItem = {
   slug: string;
   client: string;
@@ -295,6 +329,8 @@ export type PortfolioItem = {
   mobile?: string;
   mobileW?: number;
   mobileH?: number;
+  /** Full tech stack + architecture shown in the details popup. */
+  tech?: ProjectTech;
   /** Show on the homepage portfolio section (home shows the first 4). */
   home?: boolean;
 };
@@ -322,6 +358,19 @@ export const portfolio: PortfolioItem[] = [
       "Matching mobile shopping app",
       "Quiet-luxury brand design & motion",
     ],
+    tech: {
+      architecture:
+        "A server-rendered Next.js storefront talks to typed API routes backed by a PostgreSQL catalogue. Cart and checkout run through a secure payment layer, while a companion React Native app shares the same backend so web and mobile stay perfectly in sync.",
+      flow: ["Web / Mobile App", "Next.js SSR", "API Routes", "Prisma ORM", "PostgreSQL"],
+      stack: [
+        { title: "Frontend", icon: "frontend", items: ["Next.js 15", "React 19", "TypeScript"] },
+        { title: "Styling & Motion", icon: "motion", items: ["Tailwind CSS", "Framer Motion", "GSAP"] },
+        { title: "Commerce", icon: "commerce", items: ["Cart & Checkout Engine", "Razorpay", "Stripe"] },
+        { title: "Backend & Data", icon: "database", items: ["Node.js", "Prisma", "PostgreSQL"] },
+        { title: "Mobile App", icon: "mobile", items: ["React Native", "Expo"] },
+        { title: "Infrastructure", icon: "infra", items: ["Vercel", "Edge CDN", "Cloudinary"] },
+      ],
+    },
     home: true,
   },
   {
@@ -346,6 +395,20 @@ export const portfolio: PortfolioItem[] = [
       "Companion mobile app for on-the-go matches",
       "Success stories & trust-building proof",
     ],
+    tech: {
+      architecture:
+        "Verified member profiles live in a MongoDB document store and are surfaced through a fast search-and-filter engine. OTP-based auth keeps the community trusted, a smart matchmaking service ranks compatible profiles, and a React Native app mirrors every match in real time.",
+      flow: ["Web / Mobile App", "Next.js", "Express API", "Match Engine", "MongoDB"],
+      stack: [
+        { title: "Frontend", icon: "frontend", items: ["Next.js", "React", "TypeScript"] },
+        { title: "Styling & Motion", icon: "motion", items: ["Tailwind CSS", "Framer Motion"] },
+        { title: "Matchmaking & Search", icon: "search", items: ["Smart Match Engine", "Advanced Filters", "Full-text Search"] },
+        { title: "Backend & Data", icon: "database", items: ["Node.js", "Express", "MongoDB"] },
+        { title: "Auth & Trust", icon: "auth", items: ["JWT Sessions", "OTP Verification", "Profile Approval"] },
+        { title: "Mobile App", icon: "mobile", items: ["React Native", "Expo"] },
+        { title: "Infrastructure", icon: "infra", items: ["Vercel", "AWS S3"] },
+      ],
+    },
     home: true,
   },
   {
@@ -370,6 +433,20 @@ export const portfolio: PortfolioItem[] = [
       "Learn-anywhere mobile app",
       "Instructor profiles & learner reviews",
     ],
+    tech: {
+      architecture:
+        "Course content and lesson video stream from a CDN-backed media layer with adaptive HLS playback. Progress and enrolments persist in PostgreSQL via Prisma, certificates are generated as PDFs on completion, and a React Native app lets learners pick up exactly where they left off.",
+      flow: ["Web / Mobile App", "Next.js", "API Routes", "Prisma ORM", "PostgreSQL", "Media CDN"],
+      stack: [
+        { title: "Frontend", icon: "frontend", items: ["Next.js", "React", "TypeScript"] },
+        { title: "Styling & Motion", icon: "motion", items: ["Tailwind CSS", "Framer Motion"] },
+        { title: "Video & Learning", icon: "video", items: ["HLS Streaming", "Mux", "Progress Tracking"] },
+        { title: "Backend & Data", icon: "database", items: ["Node.js", "Prisma", "PostgreSQL"] },
+        { title: "Auth & Certificates", icon: "auth", items: ["NextAuth", "PDF Certificates"] },
+        { title: "Mobile App", icon: "mobile", items: ["React Native", "Expo"] },
+        { title: "Infrastructure", icon: "infra", items: ["Vercel", "Cloudflare R2"] },
+      ],
+    },
     home: true,
   },
   {
@@ -385,6 +462,17 @@ export const portfolio: PortfolioItem[] = [
     imgH: 11967,
     frame: "graphite",
     tags: ["Web Design", "Motion", "Branding"],
+    tech: {
+      architecture:
+        "A statically generated Next.js site pairs editorial content from a headless CMS with cinematic scroll choreography. GSAP and Lenis drive the buttery full-screen storytelling, while Next.js image optimisation keeps the heavy visuals fast.",
+      flow: ["Browser", "Next.js (SSG)", "Headless CMS", "Edge CDN"],
+      stack: [
+        { title: "Frontend", icon: "frontend", items: ["Next.js", "React", "TypeScript"] },
+        { title: "Styling & Motion", icon: "motion", items: ["Tailwind CSS", "GSAP", "Lenis"] },
+        { title: "Content", icon: "content", items: ["Headless CMS", "MDX"] },
+        { title: "Infrastructure", icon: "infra", items: ["Vercel", "Image Optimization"] },
+      ],
+    },
     home: true,
   },
   {
@@ -400,6 +488,18 @@ export const portfolio: PortfolioItem[] = [
     imgH: 8838,
     frame: "gold",
     tags: ["Web Design", "Booking Flow", "SEO"],
+    tech: {
+      architecture:
+        "A fast, SEO-first Next.js site renders treatment storytelling with structured data baked in for rich search results. Enquiries flow through a frictionless form straight into a WhatsApp booking handoff, so visitors become consultations without friction.",
+      flow: ["Browser", "Next.js (SSR/SSG)", "Form Handler", "WhatsApp API"],
+      stack: [
+        { title: "Frontend", icon: "frontend", items: ["Next.js", "React", "TypeScript"] },
+        { title: "Styling & Motion", icon: "motion", items: ["Tailwind CSS", "Framer Motion"] },
+        { title: "Booking", icon: "booking", items: ["WhatsApp API", "Form Handling"] },
+        { title: "SEO", icon: "seo", items: ["JSON-LD Schema", "Sitemap", "Open Graph"] },
+        { title: "Infrastructure", icon: "infra", items: ["Vercel"] },
+      ],
+    },
     home: false,
   },
   {
@@ -415,6 +515,16 @@ export const portfolio: PortfolioItem[] = [
     imgH: 3781,
     frame: "silver",
     tags: ["Web Design", "Personal Branding", "Responsive"],
+    tech: {
+      architecture:
+        "A lightweight, statically generated Next.js page tuned for speed and a flawless first impression. Fully responsive layouts and subtle motion present a profile that's recruiter-ready on any device, served instantly from the edge.",
+      flow: ["Browser", "Next.js (SSG)", "Edge CDN"],
+      stack: [
+        { title: "Frontend", icon: "frontend", items: ["Next.js", "React", "TypeScript"] },
+        { title: "Styling & Motion", icon: "motion", items: ["Tailwind CSS", "Framer Motion"] },
+        { title: "Infrastructure", icon: "infra", items: ["Vercel", "Edge CDN"] },
+      ],
+    },
     home: false,
   },
 ];
