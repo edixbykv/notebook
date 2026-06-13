@@ -4,6 +4,10 @@
 
 @layer base {
   :root {
+    /* Lock the site to its light notebook palette — never auto-darken,
+       even if the OS/browser/extension forces a dark colour scheme. */
+    color-scheme: light only;
+
     --radius: 0.5rem;
     --background: 45 33% 95%;
     --foreground: 0 0% 7%;
