@@ -300,6 +300,18 @@ export function ProjectsShowcase({
       {projects.map((project, i) => (
         <ProjectRow key={project.slug} project={project} reverse={i % 2 === 1} />
       ))}
+
+      {!all && (
+        <div className="flex flex-col items-center gap-3 text-center">
+          <p className="font-hand text-2xl text-ink-soft">
+            ...and plenty more in the book.
+          </p>
+          <Button href="/portfolio" variant="ink" size="lg">
+            View all projects
+            <ArrowUpRight className="h-4 w-4" />
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

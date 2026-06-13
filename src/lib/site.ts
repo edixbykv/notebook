@@ -331,7 +331,7 @@ export type PortfolioItem = {
   mobileH?: number;
   /** Full tech stack + architecture shown in the details popup. */
   tech?: ProjectTech;
-  /** Show on the homepage portfolio section (home shows the first 4). */
+  /** Show on the homepage portfolio section (home shows 3, rest live on /portfolio). */
   home?: boolean;
 };
 
@@ -375,11 +375,11 @@ export const portfolio: PortfolioItem[] = [
   },
   {
     slug: "wedding",
-    client: "Vishwakarma Matrimonial",
+    client: "Matrimonial",
     tagline: "Find your perfect life partner",
     category: "Matrimony Platform + App",
     summary:
-      "A warm, trust-first matrimony platform for the Vishwakarma community — rich verified profiles, smart matchmaking, and sub-community filtering — paired with a companion mobile app that puts your perfect match just a tap away.",
+      "A warm, trust-first matrimony platform built for every community — rich verified profiles, smart matchmaking, and sub-community filtering — paired with a companion mobile app that puts your perfect match just a tap away.",
     url: "https://wedding.kvai.in/",
     image: "/projects/wedding.webp",
     imgW: 1440,
@@ -473,7 +473,7 @@ export const portfolio: PortfolioItem[] = [
         { title: "Infrastructure", icon: "infra", items: ["Vercel", "Image Optimization"] },
       ],
     },
-    home: true,
+    home: false,
   },
   {
     slug: "zanishaa",
