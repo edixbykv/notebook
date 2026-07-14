@@ -19,10 +19,10 @@ export function Logo({
       <Image
         src="/logo.png"
         alt="KVai"
-        width={120}
-        height={28}
+        width={102}
+        height={24}
         priority
-        className="h-7 w-auto object-contain transition-transform duration-300 group-hover:-rotate-2"
+        className="h-6 w-auto object-contain transition-transform duration-300 group-hover:-rotate-2"
       />
     </Link>
   );
