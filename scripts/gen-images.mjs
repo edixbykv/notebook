@@ -13,7 +13,34 @@ const INK = "#111111";
 const RED = "#E53935";
 const YELLOW = "#FFF176";
 
-const logoPath = path.join(pub, "logo.png");
+const originalLogoPath = path.join(pub, "logo-original.png");
+const transparentLogoPath = path.join(pub, "logo.png");
+
+// 1. Extract transparent logo text (colored as #111111)
+const width = 749;
+const height = 230;
+const left = 142;
+const top = 404;
+
+const croppedGrayscale = await sharp(originalLogoPath)
+  .extract({ left, top, width, height })
+  .grayscale()
+  .raw()
+  .toBuffer();
+
+await sharp({
+  create: {
+    width,
+    height,
+    channels: 4,
+    background: { r: 17, g: 17, b: 17, alpha: 1 }
+  }
+})
+.joinChannel(croppedGrayscale, { raw: { width, height, channels: 1 } })
+.png()
+.toFile(transparentLogoPath);
+
+console.log("Extracted transparent logo to public/logo.png");
 
 /* ---------- OG image (1200x630) ---------- */
 const ogSvg = `
@@ -30,8 +57,7 @@ const ogSvg = `
 
   <!-- logo text metadata -->
   <g transform="translate(72,64)">
-    <text x="92" y="30" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" fill="${INK}">KVai Solutions</text>
-    <text x="92" y="60" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#3A3A3A">kvai.in</text>
+    <text x="180" y="38" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" fill="${INK}">kvai.in</text>
   </g>
 
   <!-- headline -->
@@ -50,31 +76,31 @@ const ogSvg = `
 </svg>`;
 
 // Generate OG Image
-const logoResizedForOg = await sharp(logoPath)
-  .resize(72, 72)
+const logoResizedForOg = await sharp(transparentLogoPath)
+  .resize({ height: 48 })
   .toBuffer();
 
 await sharp(Buffer.from(ogSvg))
   .composite([
     {
       input: logoResizedForOg,
-      top: 64,
+      top: 72,
       left: 72,
     }
   ])
   .png()
   .toFile(path.join(pub, "og.png"));
 
-// Generate App Icons
-await sharp(logoPath)
+// Generate App Icons from original square logo
+await sharp(originalLogoPath)
   .resize(512, 512)
   .toFile(path.join(app, "icon.png"));
 
-await sharp(logoPath)
+await sharp(originalLogoPath)
   .resize(180, 180)
   .toFile(path.join(app, "apple-icon.png"));
 
-await sharp(logoPath)
+await sharp(originalLogoPath)
   .resize(48, 48)
   .png()
   .toFile(path.join(app, "favicon.png"));
