@@ -14,33 +14,12 @@ const RED = "#E53935";
 const YELLOW = "#FFF176";
 
 const originalLogoPath = path.join(pub, "logo-original.png");
-const transparentLogoPath = path.join(pub, "logo.png");
+const logoPath = path.join(pub, "logo.png");
 
-// 1. Extract transparent logo text (colored as #111111)
-const width = 749;
-const height = 230;
-const left = 142;
-const top = 404;
-
-const croppedGrayscale = await sharp(originalLogoPath)
-  .extract({ left, top, width, height })
-  .grayscale()
-  .raw()
-  .toBuffer();
-
-await sharp({
-  create: {
-    width,
-    height,
-    channels: 4,
-    background: { r: 17, g: 17, b: 17, alpha: 1 }
-  }
-})
-.joinChannel(croppedGrayscale, { raw: { width, height, channels: 1 } })
-.png()
-.toFile(transparentLogoPath);
-
-console.log("Extracted transparent logo to public/logo.png");
+// Copy the original logo directly as logo.png (since it is already transparent)
+import { copyFile } from "node:fs/promises";
+await copyFile(originalLogoPath, logoPath);
+console.log("Copied new logo to public/logo.png");
 
 /* ---------- OG image (1200x630) ---------- */
 const ogSvg = `
@@ -57,7 +36,7 @@ const ogSvg = `
 
   <!-- logo text metadata -->
   <g transform="translate(72,64)">
-    <text x="180" y="38" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" fill="${INK}">kvai.in</text>
+    <text x="225" y="38" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" fill="${INK}">kvai.in</text>
   </g>
 
   <!-- headline -->
@@ -76,7 +55,7 @@ const ogSvg = `
 </svg>`;
 
 // Generate OG Image
-const logoResizedForOg = await sharp(transparentLogoPath)
+const logoResizedForOg = await sharp(logoPath)
   .resize({ height: 48 })
   .toBuffer();
 
@@ -91,18 +70,39 @@ await sharp(Buffer.from(ogSvg))
   .png()
   .toFile(path.join(pub, "og.png"));
 
-// Generate App Icons from original square logo
-await sharp(originalLogoPath)
-  .resize(512, 512)
-  .toFile(path.join(app, "icon.png"));
+// Helper to generate square icons with padding on paper background
+async function generateSquareIcon(size, outputPath) {
+  const padWidth = Math.round(size * 0.8);
+  const logoHeight = Math.round(padWidth * 170 / 726);
+  const top = Math.round((size - logoHeight) / 2);
+  const left = Math.round((size - padWidth) / 2);
 
-await sharp(originalLogoPath)
-  .resize(180, 180)
-  .toFile(path.join(app, "apple-icon.png"));
+  const logoResized = await sharp(originalLogoPath)
+    .resize({ width: padWidth })
+    .toBuffer();
 
-await sharp(originalLogoPath)
-  .resize(48, 48)
+  await sharp({
+    create: {
+      width: size,
+      height: size,
+      channels: 4,
+      background: PAPER
+    }
+  })
+  .composite([
+    {
+      input: logoResized,
+      top: top,
+      left: left
+    }
+  ])
   .png()
-  .toFile(path.join(app, "favicon.png"));
+  .toFile(outputPath);
+}
+
+// Generate App Icons
+await generateSquareIcon(512, path.join(app, "icon.png"));
+await generateSquareIcon(180, path.join(app, "apple-icon.png"));
+await generateSquareIcon(48, path.join(app, "favicon.png"));
 
 console.log("Generated: public/og.png, src/app/icon.png, apple-icon.png, favicon.png");
