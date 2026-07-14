@@ -48,7 +48,7 @@ export function PageHero({
                 <span className="mb-4 inline-flex items-center gap-2 rounded-full border-2 border-ink/15 bg-paper px-3.5 py-1.5 text-sm font-bold text-ink shadow-paper">
                   <span className="h-2 w-2 rounded-full bg-marker" />
                   {eyebrow}
-                  <span className="font-hand text-marker">· KVAI</span>
+                  <span className="font-hand text-marker">· KVai</span>
                 </span>
               </Reveal>
             )}
@@ -82,7 +82,7 @@ export function PageHero({
                   {note ?? "AI should empower people, not replace them."}
                 </p>
                 <p className="mt-2 font-hand text-lg text-ink/70">
-                  — the KVAI team
+                  — the KVai team
                 </p>
               </StickyNote>
             </div>

@@ -17,7 +17,7 @@ export const metadata: Metadata = buildMetadata({
   title: "About",
   path: "/about",
   description:
-    "KVAI Solutions is an AI-powered business growth partner built on one belief: AI should empower people, not replace them. Learn our story, mission, and values.",
+    "KVai Solutions is an AI-powered business growth partner built on one belief: AI should empower people, not replace them. Learn our story, mission, and values.",
 });
 
 const crumbs = [
@@ -60,14 +60,14 @@ export default function AboutPage() {
     <>
       <JsonLd data={breadcrumbSchema(crumbs)} />
       <PageHero
-        eyebrow="About KVAI"
+        eyebrow="About KVai"
         title={
           <>
             We help businesses grow — the{" "}
             <span className="text-marker">human + AI</span> way
           </>
         }
-        description="KVAI Solutions was founded on a simple, slightly contrarian belief: in a world racing to replace people with AI, the real winners will be the ones who use AI to make their people unstoppable."
+        description="KVai Solutions was founded on a simple, slightly contrarian belief: in a world racing to replace people with AI, the real winners will be the ones who use AI to make their people unstoppable."
         crumbs={crumbs}
       />
 
@@ -94,7 +94,7 @@ export default function AboutPage() {
                   They just don&apos;t have a partner who makes it happen.
                 </p>
                 <p>
-                  So we built one. KVAI Solutions blends{" "}
+                  So we built one. KVai Solutions blends{" "}
                   <Highlight>strategy, design, and AI</Highlight> into a single
                   growth partner — the kind that treats your business like a
                   notebook full of possibilities, and then actually executes on

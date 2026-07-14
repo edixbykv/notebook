@@ -10,7 +10,7 @@ export const metadata: Metadata = buildMetadata({
   title: "Portfolio",
   path: "/portfolio",
   description:
-    "Real businesses, real results. Browse KVAI Solutions' portfolio of websites, AI automations, and social media growth case studies — with before & after numbers.",
+    "Real businesses, real results. Browse KVai Solutions' portfolio of websites, AI automations, and social media growth case studies — with before & after numbers.",
   keywords: ["case studies", "portfolio", "client results"],
 });
 

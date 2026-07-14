@@ -185,7 +185,7 @@ function ArticleBody({
       <p className="text-xl text-ink">{post.excerpt}</p>
 
       <p>
-        At KVAI Solutions, we believe the businesses that win with technology
+        At KVai Solutions, we believe the businesses that win with technology
         aren&apos;t the ones chasing every shiny trend — they&apos;re the ones
         who apply the right tools to the right problems. This article breaks
         down a practical way to think about{" "}

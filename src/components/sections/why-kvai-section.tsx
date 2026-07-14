@@ -33,7 +33,7 @@ export function WhyKvaiSection() {
             <div className="lg:sticky lg:top-28">
               <SectionHeading
                 align="left"
-                eyebrow="Why KVAI"
+                eyebrow="Why KVai"
                 title={
                   <>
                     Built for{" "}

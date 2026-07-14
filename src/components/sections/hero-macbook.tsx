@@ -52,7 +52,7 @@ const STATUS = [
 
 /**
  * A MacBook mock-up whose screen auto-cycles through a focused dashboard view
- * for each KVAI service — Websites, Social Growth, AI Automation and Leads/CRM —
+ * for each KVai service — Websites, Social Growth, AI Automation and Leads/CRM —
  * so the full offering reads at a glance without crowding one screen.
  */
 export function HeroMacbook({ className }: { className?: string }) {
@@ -106,7 +106,7 @@ export function HeroMacbook({ className }: { className?: string }) {
                 <span className="h-2 w-2 rounded-full bg-[#febc2e]" />
                 <span className="h-2 w-2 rounded-full bg-[#28c840]" />
                 <span className="ml-1.5 text-[10px] font-bold tracking-tight">
-                  KVAI <span className="text-marker">Studio</span>
+                  KVai <span className="text-marker">Studio</span>
                 </span>
                 <span className="ml-auto inline-flex items-center gap-1 rounded-full bg-ink/90 px-1.5 py-0.5 text-[8px] font-bold text-paper">
                   <span className="relative flex h-1 w-1">

@@ -15,8 +15,8 @@ export const metadata: Metadata = buildMetadata({
   title: "Contact",
   path: "/contact",
   description:
-    "Book a free consultation with KVAI Solutions. Call +91 76781 20635 or send us a message — we'll reply within one business day with a clear growth plan.",
-  keywords: ["contact KVAI", "free consultation", "book a call"],
+    "Book a free consultation with KVai Solutions. Call +91 76781 20635 or send us a message — we'll reply within one business day with a clear growth plan.",
+  keywords: ["contact KVai", "free consultation", "book a call"],
 });
 
 const crumbs = [

@@ -41,7 +41,7 @@ export function localBusinessSchema() {
     "@type": "ProfessionalService",
     "@id": `${siteConfig.url}/#localbusiness`,
     name: siteConfig.name,
-    image: `${siteConfig.url}/opengraph-image`,
+    image: `${siteConfig.url}/og.png`,
     url: siteConfig.url,
     telephone: siteConfig.phoneDisplay,
     priceRange: "₹₹",

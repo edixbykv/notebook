@@ -14,7 +14,7 @@ const stats = [
 export function BrandStrip() {
   return (
     <section
-      aria-label="KVAI Solutions results at a glance"
+      aria-label="KVai Solutions results at a glance"
       className="relative border-y border-dashed border-ink/15 bg-paper-deep py-7"
     >
       <Container>
@@ -45,7 +45,7 @@ export function BrandStrip() {
                 </span>
               </div>
               <p className="text-xs text-ink-soft">
-                Real businesses growing with <strong>KVAI Solutions</strong>
+                Real businesses growing with <strong>KVai Solutions</strong>
               </p>
             </div>
           </div>

@@ -16,7 +16,7 @@ const baseKeywords = [
   "website development",
   "social media growth",
   "business growth",
-  "KVAI Solutions",
+  "KVai Solutions",
   "digital marketing India",
   "SEO services",
   "Next.js development",

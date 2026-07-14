@@ -17,7 +17,7 @@ import { FinalCtaSection } from "@/components/sections/final-cta-section";
 export const metadata: Metadata = buildMetadata({
   path: "/",
   description:
-    "KVAI Solutions is your AI-powered business growth partner. We build mobile-first websites, drive social media growth, and deploy AI automation to help your business grow faster. Book a free consultation.",
+    "KVai Solutions is your AI-powered business growth partner. We build mobile-first websites, drive social media growth, and deploy AI automation to help your business grow faster. Book a free consultation.",
 });
 
 export default function HomePage() {

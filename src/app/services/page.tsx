@@ -15,7 +15,7 @@ export const metadata: Metadata = buildMetadata({
   title: "Services",
   path: "/services",
   description:
-    "Explore KVAI Solutions' services: website development, social media growth, and AI automation — everything you need to grow your business faster.",
+    "Explore KVai Solutions' services: website development, social media growth, and AI automation — everything you need to grow your business faster.",
   keywords: ["website design", "social media marketing", "business automation"],
 });
 

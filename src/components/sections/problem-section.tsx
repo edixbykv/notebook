@@ -63,7 +63,7 @@ export function ProblemSection() {
                 Every one of these is solvable with the right partner.
               </p>
               <p className="mt-3 text-sm text-paper/70">
-                That&apos;s exactly what we do at KVAI Solutions.
+                That&apos;s exactly what we do at KVai Solutions.
               </p>
             </div>
           </RevealItem>

@@ -1,10 +1,10 @@
 export const siteConfig = {
-  name: "KVAI Solutions",
-  legalName: "KVAI Solutions",
+  name: "KVai Solutions",
+  legalName: "KVai Solutions",
   tagline: "AI-Powered Business Growth Partner",
   principle: "AI should empower people, not replace them.",
   description:
-    "KVAI Solutions is your AI-powered business growth partner. We build mobile-first websites, drive social media growth, and deploy AI automation that helps businesses grow faster — combining human creativity with artificial intelligence.",
+    "KVai Solutions is your AI-powered business growth partner. We build mobile-first websites, drive social media growth, and deploy AI automation that helps businesses grow faster — combining human creativity with artificial intelligence.",
   url: "https://kvai.in",
   phone: "7678120635",
   phoneDisplay: "+91 76781 20635",
@@ -139,7 +139,7 @@ export const services = [
 
 export const faqs = [
   {
-    q: "What exactly does KVAI Solutions do?",
+    q: "What exactly does KVai Solutions do?",
     a: "We're an AI-powered growth partner. We build high-converting websites, grow your social media, and automate repetitive work with AI — all designed to help your business grow faster while keeping humans in the driver's seat.",
   },
   {
@@ -250,7 +250,7 @@ export const whyKvai = [
 export const testimonials = [
   {
     quote:
-      "KVAI rebuilt our website and our leads doubled in two months. It finally feels like our site is working for us.",
+      "KVai rebuilt our website and our leads doubled in two months. It finally feels like our site is working for us.",
     name: "Rahul Mehta",
     role: "Founder, Mehta Interiors",
     highlight: "leads doubled in two months",
@@ -338,7 +338,7 @@ export type PortfolioItem = {
 export const portfolio: PortfolioItem[] = [
   {
     slug: "ecomm",
-    client: "KVAI Wear",
+    client: "KVai Wear",
     tagline: "Luxury basics, made to last",
     category: "E-Commerce + App",
     summary:
@@ -413,7 +413,7 @@ export const portfolio: PortfolioItem[] = [
   },
   {
     slug: "learn",
-    client: "KVAI LMS",
+    client: "KVai LMS",
     tagline: "Learn. Grow. Get certified.",
     category: "Learning Platform + App",
     summary:
