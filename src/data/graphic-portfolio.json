@@ -1,0 +1,232 @@
+[
+  {
+    "slug": "social-campaign-1",
+    "title": "Brand Launch Campaign",
+    "client": "KVai Creatives",
+    "tag": "Social Media",
+    "image": "/portfolio/graphic/social-campaign-1.webp",
+    "width": 1200,
+    "height": 1200,
+    "aspectRatio": 1
+  },
+  {
+    "slug": "aditi-story",
+    "title": "Vertical Editorial Story",
+    "client": "Aditi Couture",
+    "tag": "Poster / Story",
+    "image": "/portfolio/graphic/aditi-story.webp",
+    "width": 708,
+    "height": 1200,
+    "aspectRatio": 0.59
+  },
+  {
+    "slug": "aditi-banner",
+    "title": "Luxury Brand Header",
+    "client": "Aditi Couture",
+    "tag": "Banner",
+    "image": "/portfolio/graphic/aditi-banner.webp",
+    "width": 1200,
+    "height": 708,
+    "aspectRatio": 1.69
+  },
+  {
+    "slug": "bharat-post",
+    "title": "Festival Growth Post",
+    "client": "Bharat Retail",
+    "tag": "Social Post",
+    "image": "/portfolio/graphic/bharat-post.webp",
+    "width": 1200,
+    "height": 1200,
+    "aspectRatio": 1
+  },
+  {
+    "slug": "bright-post",
+    "title": "Commercial Promotion",
+    "client": "Bright Electronics",
+    "tag": "Ad Creative",
+    "image": "/portfolio/graphic/bright-post.webp",
+    "width": 1080,
+    "height": 1080,
+    "aspectRatio": 1
+  },
+  {
+    "slug": "cc-creative",
+    "title": "Content System Graphic",
+    "client": "Creator Hub",
+    "tag": "Branding",
+    "image": "/portfolio/graphic/cc-creative.webp",
+    "width": 1080,
+    "height": 1080,
+    "aspectRatio": 1
+  },
+  {
+    "slug": "ai-creative-1",
+    "title": "AI Automation Visual",
+    "client": "KVai AI Labs",
+    "tag": "AI Art",
+    "image": "/portfolio/graphic/ai-creative-1.webp",
+    "width": 1200,
+    "height": 800,
+    "aspectRatio": 1.5
+  },
+  {
+    "slug": "ai-creative-2",
+    "title": "Future of Tech Post",
+    "client": "KVai AI Labs",
+    "tag": "AI Art",
+    "image": "/portfolio/graphic/ai-creative-2.webp",
+    "width": 1200,
+    "height": 800,
+    "aspectRatio": 1.5
+  },
+  {
+    "slug": "company-profile",
+    "title": "Corporate Profile Deck",
+    "client": "Apex Group",
+    "tag": "Brochure",
+    "image": "/portfolio/graphic/company-profile.webp",
+    "width": 736,
+    "height": 981,
+    "aspectRatio": 0.75
+  },
+  {
+    "slug": "dental-care-1",
+    "title": "Healthcare Patient Trust",
+    "client": "DentCare Dental",
+    "tag": "Healthcare",
+    "image": "/portfolio/graphic/dental-care-1.webp",
+    "width": 1200,
+    "height": 1200,
+    "aspectRatio": 1
+  },
+  {
+    "slug": "dental-care-2",
+    "title": "Smile Transformation Post",
+    "client": "DentCare Dental",
+    "tag": "Healthcare",
+    "image": "/portfolio/graphic/dental-care-2.webp",
+    "width": 1200,
+    "height": 1200,
+    "aspectRatio": 1
+  },
+  {
+    "slug": "features-banner",
+    "title": "Feature Highlights Banner",
+    "client": "TechStack",
+    "tag": "Banner",
+    "image": "/portfolio/graphic/features-banner.webp",
+    "width": 1024,
+    "height": 500,
+    "aspectRatio": 2.05
+  },
+  {
+    "slug": "salty-spoon",
+    "title": "Salty Spoon Food Branding",
+    "client": "Salty Spoon Diner",
+    "tag": "Food & Beverage",
+    "image": "/portfolio/graphic/salty-spoon.webp",
+    "width": 1200,
+    "height": 1200,
+    "aspectRatio": 1
+  },
+  {
+    "slug": "gore-campaign-1",
+    "title": "Premium Skincare Creative 1",
+    "client": "Gore Aesthetics",
+    "tag": "Skincare",
+    "image": "/portfolio/graphic/gore-campaign-1.webp",
+    "width": 1200,
+    "height": 1200,
+    "aspectRatio": 1
+  },
+  {
+    "slug": "gore-campaign-2",
+    "title": "Premium Skincare Creative 2",
+    "client": "Gore Aesthetics",
+    "tag": "Skincare",
+    "image": "/portfolio/graphic/gore-campaign-2.webp",
+    "width": 1200,
+    "height": 1200,
+    "aspectRatio": 1
+  },
+  {
+    "slug": "om-brand-1",
+    "title": "Omni Growth Post 1",
+    "client": "OM Enterprises",
+    "tag": "Marketing",
+    "image": "/portfolio/graphic/om-brand-1.webp",
+    "width": 1200,
+    "height": 1200,
+    "aspectRatio": 1
+  },
+  {
+    "slug": "om-brand-2",
+    "title": "Omni Growth Post 2",
+    "client": "OM Enterprises",
+    "tag": "Marketing",
+    "image": "/portfolio/graphic/om-brand-2.webp",
+    "width": 1200,
+    "height": 1200,
+    "aspectRatio": 1
+  },
+  {
+    "slug": "om-brand-3",
+    "title": "Omni Growth Post 3",
+    "client": "OM Enterprises",
+    "tag": "Marketing",
+    "image": "/portfolio/graphic/om-brand-3.webp",
+    "width": 1200,
+    "height": 1200,
+    "aspectRatio": 1
+  },
+  {
+    "slug": "rks-post-1",
+    "title": "Corporate Leadership Post",
+    "client": "RKS Global",
+    "tag": "Corporate",
+    "image": "/portfolio/graphic/rks-post-1.webp",
+    "width": 1080,
+    "height": 1080,
+    "aspectRatio": 1
+  },
+  {
+    "slug": "rks-post-2",
+    "title": "Strategic Business Poster",
+    "client": "RKS Global",
+    "tag": "Corporate",
+    "image": "/portfolio/graphic/rks-post-2.webp",
+    "width": 1200,
+    "height": 1200,
+    "aspectRatio": 1
+  },
+  {
+    "slug": "rr-banner",
+    "title": "Retail Special Offer Banner",
+    "client": "RR Stores",
+    "tag": "Banner",
+    "image": "/portfolio/graphic/rr-banner.webp",
+    "width": 1200,
+    "height": 603,
+    "aspectRatio": 1.99
+  },
+  {
+    "slug": "velvet-oud",
+    "title": "Velvet Oud Luxury Perfume",
+    "client": "Velvet Oud",
+    "tag": "Luxury Goods",
+    "image": "/portfolio/graphic/velvet-oud.webp",
+    "width": 1200,
+    "height": 1063,
+    "aspectRatio": 1.13
+  },
+  {
+    "slug": "brand-showcase-custom",
+    "title": "Social Media Offer Post",
+    "client": "KVai Client",
+    "tag": "Social Post",
+    "image": "/portfolio/graphic/brand-showcase-custom.webp",
+    "width": 1200,
+    "height": 1200,
+    "aspectRatio": 1
+  }
+]
