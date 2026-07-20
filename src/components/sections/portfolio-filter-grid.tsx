@@ -53,8 +53,8 @@ export function PortfolioFilterGrid() {
     <Section className="bg-paper py-12 md:py-20">
       <Container>
         {/* Main Tab Navigation */}
-        <div className="mb-14 flex flex-col items-center">
-          <div className="inline-flex max-w-full flex-wrap justify-center gap-2 rounded-2xl border border-ink/15 bg-paper-deep/80 p-2 shadow-notebook">
+        <div className="mb-10 sm:mb-14 flex flex-col items-center">
+          <div className="flex max-w-full overflow-x-auto no-scrollbar sm:flex-wrap justify-start sm:justify-center gap-1.5 sm:gap-2 rounded-2xl border border-ink/15 bg-paper-deep/80 p-1.5 sm:p-2 shadow-notebook w-full sm:w-auto">
             {MAIN_TABS.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -63,7 +63,7 @@ export function PortfolioFilterGrid() {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={cn(
-                    "relative flex items-center gap-2.5 rounded-xl px-5 py-3 text-sm font-bold transition-all duration-300",
+                    "relative flex shrink-0 items-center gap-1.5 sm:gap-2.5 rounded-xl px-3.5 py-2.5 sm:px-5 sm:py-3 text-xs sm:text-sm font-bold transition-all duration-300",
                     isActive
                       ? "bg-ink text-paper shadow-lg scale-100"
                       : "text-ink-soft hover:bg-paper hover:text-ink"
@@ -71,7 +71,7 @@ export function PortfolioFilterGrid() {
                 >
                   <Icon
                     className={cn(
-                      "h-4 w-4",
+                      "h-3.5 w-3.5 sm:h-4 sm:w-4",
                       isActive ? "text-marker" : "text-ink-soft"
                     )}
                   />
@@ -79,7 +79,7 @@ export function PortfolioFilterGrid() {
                   {tab.badge && (
                     <span
                       className={cn(
-                        "rounded-full px-2 py-0.5 text-[10px] font-extrabold",
+                        "rounded-full px-1.5 py-0.5 text-[9px] sm:text-[10px] font-extrabold",
                         isActive
                           ? "bg-marker text-ink"
                           : "bg-ink/10 text-ink-soft"
