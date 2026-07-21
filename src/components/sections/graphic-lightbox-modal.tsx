@@ -148,16 +148,7 @@ export function GraphicLightboxModal({
                 <p className="font-hand text-lg text-ink-soft">Client: {item.client}</p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3">
-                {item.link && (
-                  <a
-                    href={item.link}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-marker px-4 py-2 text-xs font-bold text-ink transition-transform hover:scale-105 shadow-md"
-                  >
-                    <ExternalLink className="h-3.5 w-3.5" />
-                    View Full Case Study
-                  </a>
-                )}
+              <div className="flex items-center gap-3">
                 <a
                   href={item.image}
                   target="_blank"

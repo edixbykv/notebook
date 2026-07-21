@@ -135,40 +135,42 @@ export default async function BlogPostPage({ params }: Params) {
         </Section>
 
         {/* related */}
-        <Section ruled className="ruled-paper py-14">
-          <Container>
-            <h2 className="mb-8 text-center font-display text-2xl font-bold text-ink">
-              Keep reading
-            </h2>
-            <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
-              {relatedPosts.map((p) => (
-                <Reveal key={p.slug}>
-                  <Link
-                    href={`/blog/${p.slug}`}
-                    className="group block h-full rounded-lg bg-paper p-6 shadow-paper transition-all hover:-translate-y-1 hover:shadow-paper-lift"
-                  >
-                    <span
-                      className={cn(
-                        "inline-block rounded-full px-2.5 py-0.5 text-xs font-bold",
-                        p.color === "marker"
-                          ? "bg-marker text-paper"
-                          : p.color === "ink"
-                            ? "bg-ink text-paper"
-                            : "bg-sticky text-ink"
-                      )}
+        {relatedPosts.length > 0 && (
+          <Section ruled className="ruled-paper py-14">
+            <Container>
+              <h2 className="mb-8 text-center font-display text-2xl font-bold text-ink">
+                Keep reading
+              </h2>
+              <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
+                {relatedPosts.map((p) => (
+                  <Reveal key={p.slug}>
+                    <Link
+                      href={`/blog/${p.slug}`}
+                      className="group block h-full rounded-lg bg-paper p-6 shadow-paper transition-all hover:-translate-y-1 hover:shadow-paper-lift"
                     >
-                      {p.category}
-                    </span>
-                    <h3 className="mt-3 font-display text-lg font-bold leading-snug text-ink group-hover:text-marker">
-                      {p.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-ink-soft">{p.excerpt}</p>
-                  </Link>
-                </Reveal>
-              ))}
-            </div>
-          </Container>
-        </Section>
+                      <span
+                        className={cn(
+                          "inline-block rounded-full px-2.5 py-0.5 text-xs font-bold",
+                          p.color === "marker"
+                            ? "bg-marker text-paper"
+                            : p.color === "ink"
+                              ? "bg-ink text-paper"
+                              : "bg-sticky text-ink"
+                        )}
+                      >
+                        {p.category}
+                      </span>
+                      <h3 className="mt-3 font-display text-lg font-bold leading-snug text-ink group-hover:text-marker">
+                        {p.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-ink-soft">{p.excerpt}</p>
+                    </Link>
+                  </Reveal>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        )}
       </article>
 
       <FinalCtaSection />

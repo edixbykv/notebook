@@ -55,20 +55,29 @@ export default function BlogPage() {
             >
               <div
                 className={cn(
-                  "relative min-h-[220px]",
+                  "relative min-h-[220px] overflow-hidden",
                   featured.color === "sticky" && "bg-sticky",
                   featured.color === "marker" && "bg-marker",
                   featured.color === "ink" && "bg-ink"
                 )}
               >
-                <div
-                  className="absolute inset-0 opacity-20"
-                  style={{
-                    backgroundImage:
-                      "repeating-linear-gradient(45deg, rgba(0,0,0,0.08) 0 12px, transparent 12px 24px)",
-                  }}
-                />
-                <span className="absolute left-6 top-6 rounded-full bg-paper px-3 py-1 text-xs font-bold text-ink">
+                {featured.image ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={featured.image}
+                    alt={featured.title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div
+                    className="absolute inset-0 opacity-20"
+                    style={{
+                      backgroundImage:
+                        "repeating-linear-gradient(45deg, rgba(0,0,0,0.08) 0 12px, transparent 12px 24px)",
+                    }}
+                  />
+                )}
+                <span className="absolute left-6 top-6 rounded-full bg-paper px-3 py-1 text-xs font-bold text-ink shadow-sm z-10">
                   Featured · {featured.category}
                 </span>
               </div>
@@ -105,16 +114,25 @@ export default function BlogPage() {
                 >
                   <div
                     className={cn(
-                      "relative h-32",
+                      "relative h-32 overflow-hidden",
                       post.color === "sticky" && "bg-sticky",
                       post.color === "marker" && "bg-marker",
                       post.color === "ink" && "bg-ink"
                     )}
                   >
-                    <span className="tape" aria-hidden="true" />
+                    {"image" in post && post.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={post.image as string}
+                        alt={post.title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <span className="tape" aria-hidden="true" />
+                    )}
                     <span
                       className={cn(
-                        "absolute bottom-3 left-4 rounded-full px-2.5 py-0.5 text-xs font-bold",
+                        "absolute bottom-3 left-4 rounded-full px-2.5 py-0.5 text-xs font-bold shadow-sm z-10",
                         post.color === "sticky"
                           ? "bg-ink text-paper"
                           : "bg-paper text-ink"

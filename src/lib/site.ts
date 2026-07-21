@@ -539,65 +539,6 @@ export const blogPosts = [
     date: "2026-07-21",
     readTime: "12 min read",
     color: "marker" as const,
-  },
-  {
-    slug: "ai-for-small-business-growth",
-    title: "How Small Businesses Can Actually Use AI to Grow (Without the Hype)",
-    excerpt:
-      "Forget the buzzwords. Here are practical, proven ways small businesses are using AI today to win more customers and save real hours.",
-    category: "AI Strategy",
-    date: "2026-05-28",
-    readTime: "6 min read",
-    color: "sticky" as const,
-  },
-  {
-    slug: "website-that-converts",
-    title: "The Anatomy of a Website That Actually Converts",
-    excerpt:
-      "A beautiful website that doesn't generate leads is just an expensive brochure. Here's what high-converting sites do differently.",
-    category: "Web Development",
-    date: "2026-05-14",
-    readTime: "7 min read",
-    color: "marker" as const,
-  },
-  {
-    slug: "social-media-content-system",
-    title: "Build a Content System, Not Just Content",
-    excerpt:
-      "Random posting is exhausting and ineffective. Learn how to build a repeatable content engine that grows your audience on autopilot.",
-    category: "Social Media",
-    date: "2026-04-30",
-    readTime: "5 min read",
-    color: "ink" as const,
-  },
-  {
-    slug: "automation-workflows-to-start-with",
-    title: "5 Automation Workflows Every Business Should Set Up First",
-    excerpt:
-      "Not sure where to start with automation? These five workflows deliver the fastest return for almost any business.",
-    category: "Automation",
-    date: "2026-04-12",
-    readTime: "8 min read",
-    color: "sticky" as const,
-  },
-  {
-    slug: "human-plus-ai",
-    title: "Why the Future Is Human + AI, Not Human vs AI",
-    excerpt:
-      "The businesses winning with AI aren't replacing people — they're amplifying them. Here's the mindset shift that matters.",
-    category: "AI Strategy",
-    date: "2026-03-22",
-    readTime: "6 min read",
-    color: "marker" as const,
-  },
-  {
-    slug: "local-seo-checklist",
-    title: "The Local SEO Checklist That Gets You Found in 2026",
-    excerpt:
-      "If local customers can't find you on Google, you're invisible. This checklist covers everything that moves the needle.",
-    category: "SEO",
-    date: "2026-03-05",
-    readTime: "9 min read",
-    color: "ink" as const,
+    image: "/portfolio/graphic/company-profile.webp",
   },
 ];
