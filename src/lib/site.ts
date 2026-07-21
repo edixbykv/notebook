@@ -55,7 +55,6 @@ export const mainNav: NavItem[] = [
   },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Blog", href: "/blog" },
-  { label: "Vlog", href: "/vlog" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];

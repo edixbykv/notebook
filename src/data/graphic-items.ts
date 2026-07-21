@@ -8,9 +8,22 @@ export type GraphicItem = {
   width: number;
   height: number;
   aspectRatio: number;
+  link?: string;
 };
 
 export const graphicItems: GraphicItem[] = [
+  {
+    slug: "textbook-layout-design",
+    title: "Class VI Social Science Textbook & Layout Design",
+    client: "School Curriculum DTP",
+    tag: "Editorial & DTP Design",
+    category: "branding",
+    image: "/portfolio/graphic/company-profile.webp",
+    width: 1200,
+    height: 1200,
+    aspectRatio: 1,
+    link: "/portfolio/book-layout-design",
+  },
   {
     slug: "velvet-oud",
     title: "Velvet Oud Luxury Perfume",
