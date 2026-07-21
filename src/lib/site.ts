@@ -550,6 +550,6 @@ export const blogPosts: BlogPost[] = [
     date: "2026-07-21",
     readTime: "12 min read",
     color: "marker",
-    image: "/portfolio/graphic/company-profile.webp",
+    image: "/blog/social-science-ch1-cover.webp",
   },
 ];
