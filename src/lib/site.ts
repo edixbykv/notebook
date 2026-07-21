@@ -529,7 +529,18 @@ export const portfolio: PortfolioItem[] = [
   },
 ];
 
-export const blogPosts = [
+export type BlogPost = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  date: string;
+  readTime: string;
+  color: "marker" | "sticky" | "ink";
+  image?: string;
+};
+
+export const blogPosts: BlogPost[] = [
   {
     slug: "locating-places-and-reading-maps",
     title: "Locating Places and Reading Maps: Interactive LMS & Study Chapter",
@@ -538,7 +549,7 @@ export const blogPosts = [
     category: "LMS & Educational",
     date: "2026-07-21",
     readTime: "12 min read",
-    color: "marker" as const,
+    color: "marker",
     image: "/portfolio/graphic/company-profile.webp",
   },
 ];
