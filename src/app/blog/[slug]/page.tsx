@@ -13,6 +13,8 @@ import { Squiggle } from "@/components/notebook/doodles";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 import { cn } from "@/lib/utils";
 
+import { SocialScienceChapter } from "@/components/sections/social-science-chapter";
+
 type Params = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
@@ -180,6 +182,10 @@ function ArticleBody({
 }: {
   post: (typeof blogPosts)[number];
 }) {
+  if (post.slug === "locating-places-and-reading-maps") {
+    return <SocialScienceChapter />;
+  }
+
   return (
     <div className="prose-notebook space-y-6 text-lg leading-relaxed text-ink-soft [&_h2]:font-display [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-ink [&_h2]:mt-10 [&_strong]:text-ink">
       <p className="text-xl text-ink">{post.excerpt}</p>

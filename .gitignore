@@ -38,3 +38,7 @@ next-env.d.ts
 # large 3D source model (optimized copy lives in public/models/)
 /2004_ferrari_f2004.glb
 dev.log
+
+# Raw InDesign archives and scratch
+Social Science Chap-1 Folder*
+scratch/

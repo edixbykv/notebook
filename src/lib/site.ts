@@ -54,8 +54,9 @@ export const mainNav: NavItem[] = [
     ],
   },
   { label: "Portfolio", href: "/portfolio" },
-  { label: "About", href: "/about" },
   { label: "Blog", href: "/blog" },
+  { label: "Vlog", href: "/vlog" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -530,6 +531,16 @@ export const portfolio: PortfolioItem[] = [
 ];
 
 export const blogPosts = [
+  {
+    slug: "locating-places-and-reading-maps",
+    title: "Locating Places and Reading Maps: Interactive LMS & Study Chapter",
+    excerpt:
+      "A complete interactive LMS reading module and video lesson on globes, latitudes, longitudes, time zones, and map reading — Class VI Social Science Chapter 1.",
+    category: "LMS & Educational",
+    date: "2026-07-21",
+    readTime: "12 min read",
+    color: "marker" as const,
+  },
   {
     slug: "ai-for-small-business-growth",
     title: "How Small Businesses Can Actually Use AI to Grow (Without the Hype)",
